@@ -57,3 +57,4 @@ const Features = () => {
 }
 
 export default Features
+//src/components/home/NewFeatures.jsx

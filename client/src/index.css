@@ -3,6 +3,11 @@
 
 
 /* @tailwind utilities; */
+/* Only applies to screenshot/export container for html2canvas compatibility */
+#resume-preview {
+  /* fallback to white or any supported color */
+  background: #fff !important;
+}
 
 
 *{

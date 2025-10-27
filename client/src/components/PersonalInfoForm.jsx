@@ -16,6 +16,16 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
         { key: "linkedin", label: "LinkedIn Profile", icon: Linkedin, type: "url" },
         { key: "website", label: "Personal Website", icon: Globe, type: "url" }
     ]
+    const handlePhotoChange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    onChange({ ...data, image: reader.result });
+  };
+  reader.readAsDataURL(file);
+};
+
 
   return (
     <div>
@@ -33,6 +43,25 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
             )}
             <input type="file" accept="image/jpeg, image/png" className="hidden" onChange={(e)=>handleChange("image", e.target.files[0])}/>
         </label>
+        
+<label htmlFor="photo" className="block font-semibold mb-1">Photo</label>
+<input
+  id="photo"
+  name="photo"
+  type="file"
+  accept="image/*"
+  onChange={handlePhotoChange}
+  className="mb-3"
+/>
+{data.image && (
+  <img
+    src={data.image}
+    alt="Preview"
+    className="w-24 h-24 object-cover"
+    style={{ borderRadius: 0 }}
+  />
+)}
+
         {typeof data.image === 'object' && (
             <div className='flex flex-col gap-1 pl-4 text-sm'>
                 <p>Remove Background</p>

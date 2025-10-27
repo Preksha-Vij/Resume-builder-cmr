@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
@@ -12,6 +12,7 @@ import { login, setLoading } from './app/features/authSlice'
 import {Toaster} from 'react-hot-toast'
 
 const App = () => {
+
 
   const dispatch = useDispatch()
 
@@ -39,10 +40,11 @@ const App = () => {
 
   return (
     <>
+    
     <Toaster />
       <Routes>
         <Route path='/' element={<Home />}/>
-
+        <Route path='/login' element={<Login />} />
         <Route path='app' element={<Layout />}>
           <Route index element={<Dashboard />}/>
           <Route path='builder/:resumeId' element={<ResumeBuilder />}/>
